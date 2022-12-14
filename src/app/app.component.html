@@ -1,0 +1,120 @@
+<div class="container">
+  <!-- Button trigger modal -->
+  <div class="row text-center">
+    <h1 class="display-5 mt-3">REGISTRO DE DATOS: PACIENTES</h1>
+    <hr>
+  </div>
+  <button type="button" class="btn btn-primary mt-2" data-toggle="modal" data-target="#exampleModal">
+    <i class="fas fa-plus"></i>
+    Agregar
+  </button>
+  <div class="row mt-3">
+    <div class="col-md-12">
+      <div class="table-wrap">
+        <table class="table table-sm">
+          <thead class="table-dark">
+            <tr>
+              <th>Código</th>
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>Cédula</th>
+              <th>Tipo Sangre</th>
+              <th>Colesterol</th>
+              <th>Glúcosa</th>
+              <th>Presión arteria</th>
+              <th>&nbsp;</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of usuarios">
+              <td><strong>{{user.ide_paciente}}</strong></td>
+              <td>{{user.nombre}}</td>
+              <td>{{user.apellido}}</td>
+              <td>{{user.cedula}}</td>
+              <td>{{user.tipo_sangre}}</td>
+              <td>{{user.colesterol}}</td>
+              <td>{{user.glucosa}}</td>
+              <td>{{user.presion_arterial}}</td>
+              <td>
+                <i class="fas fa-edit" (click)="abrirModalEditar(user)"></i>
+                &nbsp;
+                <i class="fas fa-trash" (click)="eliminar(user)"></i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-titlen text-center" id="exampleModalLabel">Datos del paciente.</h5>
+      </div>
+      <form [formGroup]="usuarioForm" (ngSubmit)="agregar()">
+        <div class="modal-body">
+          <div class="row">
+            <div class="form-group col-lg-6">
+              <label for="nombre">Nombre:</label>
+              <input type="text" class="form-control" placeholder="Ingrese usuario" formControlName="nombre"
+                [class.is-invalid]="isInvalidField('nombre')">
+              <i class="text-danger" *ngIf="isInvalidField('nombre')">{{getErrorMessage('nombre')}}</i>
+            </div>
+            <div class="form-group col-lg-6">
+              <label for="apellido">Apellido:</label>
+              <input type="text" class="form-control" placeholder="Ingrese usuario" formControlName="apellido"
+                [class.is-invalid]="isInvalidField('apellido')">
+              <i class="text-danger" *ngIf="isInvalidField('apellido')">{{getErrorMessage('apellido')}}</i>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-lg-6">
+              <label for="exampleInputPassword1">Cédula</label>
+              <input class="form-control" formControlName="cedula" [class.is-invalid]="isInvalidField('cedula')">
+              <i class="text-danger font-italic" *ngIf="isInvalidField('cedula')">{{getErrorMessage('cedula')}}</i>
+            </div>
+            <div class="form-group col-lg-6">
+              <label for="exampleInputPassword1">Tipo Sangre</label>
+              <input class="form-control" formControlName="tipo_sangre"
+                [class.is-invalid]="isInvalidField('tipo_sangre')">
+              <i class="text-danger font-italic"
+                *ngIf="isInvalidField('tipo_sangre')">{{getErrorMessage('tipo_sangre')}}</i>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-lg-6">
+              <label for="exampleInputPassword1">Colesterol:</label>
+              <input class="form-control" formControlName="colesterol"
+                [class.is-invalid]="isInvalidField('colesterol')">
+              <i class="text-danger font-italic"
+                *ngIf="isInvalidField('colesterol')">{{getErrorMessage('colesterol')}}</i>
+            </div>
+            <div class="form-group col-lg-6">
+              <label for="exampleInputPassword1">Glucosa:</label>
+              <input class="form-control" formControlName="glucosa" [class.is-invalid]="isInvalidField('glucosa')">
+              <i class="text-danger font-italic" *ngIf="isInvalidField('glucosa')">{{getErrorMessage('glucosa')}}</i>
+            </div>
+          </div>
+          <div class="form-group col-lg-6">
+            <label for="exampleInputPassword1">Presión arterial:</label>
+            <input class="form-control" formControlName="presion_arterial"
+              [class.is-invalid]="isInvalidField('presion_arterial')">
+            <i class="text-danger font-italic"
+              *ngIf="isInvalidField('presion_arterial')">{{getErrorMessage('presion_arterial')}}</i>
+          </div>
+          <div class="modal-footer mt-3">
+            <button type="button" class="btn btn-secondary" (click)="cerrarModal()">Close</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>

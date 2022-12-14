@@ -1,0 +1,21 @@
+.fa-edit:before{
+  color: #4343ad;
+  font-size: 20px;
+  cursor: pointer;
+}
+.fa-trash:before{
+  font-size: 20px;
+  color:#d02323;
+  cursor: pointer;
+}
+
+td, tr{
+  text-align: center;
+}
+.display-4{
+  font-weight:500;
+}
+button:not(:disabled){
+  font-size: 15px;
+  background-color: #4343bf;
+}
